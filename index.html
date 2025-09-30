@@ -93,11 +93,11 @@
       }
 
       table {
-        width: 90%; /* narrower table */
-        max-width: 400px; /* constrain max width */
+        width: 90%;       /* use most of screen but leave small margin */
+        max-width: 400px; /* limit for wider phones */
         border-radius: 12px;
-        overflow: hidden; /* rounded corners applied */
-        margin: 0 auto; /* center table */
+        overflow: hidden;
+        margin: 0 auto;   /* center table */
       }
 
       thead {
@@ -129,13 +129,18 @@
       }
     }
 
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.5rem;
+    /* Extra adjustment for very narrow phones */
+    @media (max-width: 400px) {
+      table {
+        width: 95%;
+        max-width: 95%;
       }
       td::before {
         width: 90px;
         font-size: 0.9rem;
+      }
+      h1 {
+        font-size: 1.4rem;
       }
     }
   </style>
