@@ -86,14 +86,36 @@
 
     /* MOBILE ONLY */
     @media (max-width: 768px) {
-      table {
-        display: block;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-      /* Hide the top-left image on mobile */
+      /* Hide image on mobile */
       .top-left-image {
         display: none;
+      }
+
+      /* Stack table rows like cards */
+      table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+      }
+      thead {
+        display: none; /* hide header row */
+      }
+      tr {
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+        background: white;
+        padding: 10px;
+      }
+      td {
+        padding: 8px 10px;
+        text-align: left;
+        position: relative;
+      }
+      td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: inline-block;
+        width: 100px;
       }
     }
 
@@ -101,6 +123,10 @@
       h1 {
         font-size: 1.5rem;
         text-align: center;
+      }
+      td::before {
+        width: 90px;
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -123,30 +149,126 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="subtropical-1"><td>Cypress</td><td>Carp</td><td>Rare</td></tr>
-      <tr class="subarctic"><td>Kenai</td><td></td><td></td></tr>
-      <tr class="subtropical-1"><td>Biwa</td><td>Crankbait</td><td>Epic</td></tr>
-      <tr class="subtropical-2"><td>Biwa</td><td>Trout Bait</td><td>Epic</td></tr>
-      <tr class="semiarid"><td>Murray River</td><td>Catfish</td><td>Rare</td></tr>
-      <tr class="savanna-1"><td>Everglades</td><td>Worms</td><td>Legendary</td></tr>
-      <tr class="savanna-2"><td>Everglades</td><td>Zebra Mussels</td><td>Legendary</td></tr>
-      <tr class="savanna-1"><td>Key West</td><td>Clams</td><td>Rare</td></tr>
-      <tr class="savanna-2"><td>Key West</td><td>Snook</td><td>Rare</td></tr>
-      <tr class="savanna-1"><td>Key West</td><td>Medium Cut Squid</td><td>Epic</td></tr>
-      <tr class="savanna-2"><td>Key West</td><td>Mullet Live Bait</td><td>Epic</td></tr>
-      <tr class="subtropical-1"><td>Toledo</td><td>Dough Balls</td><td>Epic</td></tr>
-      <tr class="subtropical-2"><td>Toledo</td><td>Old Bread</td><td>Epic</td></tr>
-      <tr class="continental-1"><td>Great Lakes</td><td>Salmon Bait</td><td>Epic</td></tr>
-      <tr class="continental-2"><td>Great Lakes</td><td>Trout Dough</td><td>Epic</td></tr>
-      <tr class="continental-1"><td>Danube</td><td></td><td></td></tr>
-      <tr class="rainforest"><td>Amazon</td><td></td><td></td></tr>
-      <tr class="mediterranean"><td>Mediterranean Sea</td><td>Small Chunk of Bonito Live Bait</td><td>Epic</td></tr>
-      <tr class="oceanic"><td>Cape Cod</td><td></td><td></td></tr>
-      <tr class="savanna-1"><td>Hawaii</td><td>Clams</td><td>Rare</td></tr>
-      <tr class="savanna-2"><td>Hawaii</td><td>Scallops</td><td>Rare</td></tr>
-      <tr class="monsoon-1"><td>Cairns</td><td>Cut Octopus</td><td>Epic</td></tr>
-      <tr class="monsoon-2"><td>Cairns</td><td>Sand Flea</td><td>Rare</td></tr>
-      <tr class="monsoon-1"><td>Cairns</td><td>Sand Worm</td><td>Legendary</td></tr>
+      <tr class="subtropical-1">
+        <td data-label="Location">Cypress</td>
+        <td data-label="Bait">Carp</td>
+        <td data-label="Quest">Rare</td>
+      </tr>
+      <tr class="subarctic">
+        <td data-label="Location">Kenai</td>
+        <td data-label="Bait"></td>
+        <td data-label="Quest"></td>
+      </tr>
+      <tr class="subtropical-1">
+        <td data-label="Location">Biwa</td>
+        <td data-label="Bait">Crankbait</td>
+        <td data-label="Quest">Epic</td>
+      </tr>
+      <tr class="subtropical-2">
+        <td data-label="Location">Biwa</td>
+        <td data-label="Bait">Trout Bait</td>
+        <td data-label="Quest">Epic</td>
+      </tr>
+      <tr class="semiarid">
+        <td data-label="Location">Murray River</td>
+        <td data-label="Bait">Catfish</td>
+        <td data-label="Quest">Rare</td>
+      </tr>
+      <tr class="savanna-1">
+        <td data-label="Location">Everglades</td>
+        <td data-label="Bait">Worms</td>
+        <td data-label="Quest">Legendary</td>
+      </tr>
+      <tr class="savanna-2">
+        <td data-label="Location">Everglades</td>
+        <td data-label="Bait">Zebra Mussels</td>
+        <td data-label="Quest">Legendary</td>
+      </tr>
+      <tr class="savanna-1">
+        <td data-label="Location">Key West</td>
+        <td data-label="Bait">Clams</td>
+        <td data-label="Quest">Rare</td>
+      </tr>
+      <tr class="savanna-2">
+        <td data-label="Location">Key West</td>
+        <td data-label="Bait">Snook</td>
+        <td data-label="Quest">Rare</td>
+      </tr>
+      <tr class="savanna-1">
+        <td data-label="Location">Key West</td>
+        <td data-label="Bait">Medium Cut Squid</td>
+        <td data-label="Quest">Epic</td>
+      </tr>
+      <tr class="savanna-2">
+        <td data-label="Location">Key West</td>
+        <td data-label="Bait">Mullet Live Bait</td>
+        <td data-label="Quest">Epic</td>
+      </tr>
+      <tr class="subtropical-1">
+        <td data-label="Location">Toledo</td>
+        <td data-label="Bait">Dough Balls</td>
+        <td data-label="Quest">Epic</td>
+      </tr>
+      <tr class="subtropical-2">
+        <td data-label="Location">Toledo</td>
+        <td data-label="Bait">Old Bread</td>
+        <td data-label="Quest">Epic</td>
+      </tr>
+      <tr class="continental-1">
+        <td data-label="Location">Great Lakes</td>
+        <td data-label="Bait">Salmon Bait</td>
+        <td data-label="Quest">Epic</td>
+      </tr>
+      <tr class="continental-2">
+        <td data-label="Location">Great Lakes</td>
+        <td data-label="Bait">Trout Dough</td>
+        <td data-label="Quest">Epic</td>
+      </tr>
+      <tr class="continental-1">
+        <td data-label="Location">Danube</td>
+        <td data-label="Bait"></td>
+        <td data-label="Quest"></td>
+      </tr>
+      <tr class="rainforest">
+        <td data-label="Location">Amazon</td>
+        <td data-label="Bait"></td>
+        <td data-label="Quest"></td>
+      </tr>
+      <tr class="mediterranean">
+        <td data-label="Location">Mediterranean Sea</td>
+        <td data-label="Bait">Small Chunk of Bonito Live Bait</td>
+        <td data-label="Quest">Epic</td>
+      </tr>
+      <tr class="oceanic">
+        <td data-label="Location">Cape Cod</td>
+        <td data-label="Bait"></td>
+        <td data-label="Quest"></td>
+      </tr>
+      <tr class="savanna-1">
+        <td data-label="Location">Hawaii</td>
+        <td data-label="Bait">Clams</td>
+        <td data-label="Quest">Rare</td>
+      </tr>
+      <tr class="savanna-2">
+        <td data-label="Location">Hawaii</td>
+        <td data-label="Bait">Scallops</td>
+        <td data-label="Quest">Rare</td>
+      </tr>
+      <tr class="monsoon-1">
+        <td data-label="Location">Cairns</td>
+        <td data-label="Bait">Cut Octopus</td>
+        <td data-label="Quest">Epic</td>
+      </tr>
+      <tr class="monsoon-2">
+        <td data-label="Location">Cairns</td>
+        <td data-label="Bait">Sand Flea</td>
+        <td data-label="Quest">Rare</td>
+      </tr>
+      <tr class="monsoon-1">
+        <td data-label="Location">Cairns</td>
+        <td data-label="Bait">Sand Worm</td>
+        <td data-label="Quest">Legendary</td>
+      </tr>
     </tbody>
   </table>
 </body>
