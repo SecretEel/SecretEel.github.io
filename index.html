@@ -21,18 +21,11 @@
       text-align: center;
     }
 
-    /* Wrap table for mobile scroll */
-    .table-container {
-      width: 100%;
-      max-width: 1000px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
+    /* Table styling for desktop */
     table {
       border-collapse: collapse;
-      width: 100%;
-      min-width: 600px; /* Prevent text from squishing too much */
+      width: 95%;
+      max-width: 1000px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       background: white;
       border-radius: 8px;
@@ -45,14 +38,11 @@
     th, td {
       padding: 12px 16px;
       text-align: left;
-      white-space: nowrap;
+      font-size: 0.95rem;
     }
     th {
       font-weight: bold;
       font-size: 1rem;
-    }
-    td {
-      font-size: 0.95rem;
     }
 
     /* Climate row colors */
@@ -70,13 +60,10 @@
     .savanna-2 { background: #958829; }
     .monsoon-2 { background: #48165f; color: white; }
 
-    /* Floating image box */
+    /* Image box */
     .image-box {
-      position: absolute;
-      top: 20px;
-      left: 20px;
       text-align: center;
-      z-index: 1000;
+      margin-bottom: 15px;
     }
     .image-box img {
       width: 150px;
@@ -93,23 +80,32 @@
       color: #333;
     }
 
-    /* Mobile fixes */
+    /* Responsive: turn table into cards on mobile */
     @media (max-width: 768px) {
-      body {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead {
+        display: none; /* hide header row */
+      }
+      tr {
+        margin-bottom: 12px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      td {
         padding: 10px;
+        text-align: left;
+        position: relative;
+        font-size: 0.95rem;
       }
-      h1 {
-        font-size: 1.5rem;
-      }
-      .image-box {
-        position: static;
-        margin-bottom: 15px;
-      }
-      .image-box img {
-        width: 120px;
-      }
-      table {
-        min-width: 500px;
+      td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 4px;
+        color: #1e3a8a;
       }
     }
   </style>
@@ -123,43 +119,41 @@
 
   <h1>Fishing Locations & Baits</h1>
 
-  <!-- Table wrapper -->
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>Location</th>
-          <th>Bait</th>
-          <th>Quest</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="subtropical-1"><td>Cypress</td><td>Carp</td><td>Rare</td></tr>
-        <tr class="subarctic"><td>Kenai</td><td></td><td></td></tr>
-        <tr class="subtropical-1"><td>Biwa</td><td>Crankbait</td><td>Epic</td></tr>
-        <tr class="subtropical-2"><td>Biwa</td><td>Trout Bait</td><td>Epic</td></tr>
-        <tr class="semiarid"><td>Murray River</td><td>Catfish</td><td>Rare</td></tr>
-        <tr class="savanna-1"><td>Everglades</td><td>Worms</td><td>Legendary</td></tr>
-        <tr class="savanna-2"><td>Everglades</td><td>Zebra Mussels</td><td>Legendary</td></tr>
-        <tr class="savanna-1"><td>Key West</td><td>Clams</td><td>Rare</td></tr>
-        <tr class="savanna-2"><td>Key West</td><td>Snook</td><td>Rare</td></tr>
-        <tr class="savanna-1"><td>Key West</td><td>Medium Cut Squid</td><td>Epic</td></tr>
-        <tr class="savanna-2"><td>Key West</td><td>Mullet Live Bait</td><td>Epic</td></tr>
-        <tr class="subtropical-1"><td>Toledo</td><td>Dough Balls</td><td>Epic</td></tr>
-        <tr class="subtropical-2"><td>Toledo</td><td>Old Bread</td><td>Epic</td></tr>
-        <tr class="continental-1"><td>Great Lakes</td><td>Salmon Bait</td><td>Epic</td></tr>
-        <tr class="continental-2"><td>Great Lakes</td><td>Trout Dough</td><td>Epic</td></tr>
-        <tr class="continental-1"><td>Danube</td><td></td><td></td></tr>
-        <tr class="rainforest"><td>Amazon</td><td></td><td></td></tr>
-        <tr class="mediterranean"><td>Mediterranean Sea</td><td>Small Chunk of Bonito Live Bait</td><td>Epic</td></tr>
-        <tr class="oceanic"><td>Cape Cod</td><td></td><td></td></tr>
-        <tr class="savanna-1"><td>Hawaii</td><td>Clams</td><td>Rare</td></tr>
-        <tr class="savanna-2"><td>Hawaii</td><td>Scallops</td><td>Rare</td></tr>
-        <tr class="monsoon-1"><td>Cairns</td><td>Cut Octopus</td><td>Epic</td></tr>
-        <tr class="monsoon-2"><td>Cairns</td><td>Sand Flea</td><td>Rare</td></tr>
-        <tr class="monsoon-1"><td>Cairns</td><td>Sand Worm</td><td>Legendary</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <!-- Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Location</th>
+        <th>Bait</th>
+        <th>Quest</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="subtropical-1"><td data-label="Location">Cypress</td><td data-label="Bait">Carp</td><td data-label="Quest">Rare</td></tr>
+      <tr class="subarctic"><td data-label="Location">Kenai</td><td data-label="Bait"></td><td data-label="Quest"></td></tr>
+      <tr class="subtropical-1"><td data-label="Location">Biwa</td><td data-label="Bait">Crankbait</td><td data-label="Quest">Epic</td></tr>
+      <tr class="subtropical-2"><td data-label="Location">Biwa</td><td data-label="Bait">Trout Bait</td><td data-label="Quest">Epic</td></tr>
+      <tr class="semiarid"><td data-label="Location">Murray River</td><td data-label="Bait">Catfish</td><td data-label="Quest">Rare</td></tr>
+      <tr class="savanna-1"><td data-label="Location">Everglades</td><td data-label="Bait">Worms</td><td data-label="Quest">Legendary</td></tr>
+      <tr class="savanna-2"><td data-label="Location">Everglades</td><td data-label="Bait">Zebra Mussels</td><td data-label="Quest">Legendary</td></tr>
+      <tr class="savanna-1"><td data-label="Location">Key West</td><td data-label="Bait">Clams</td><td data-label="Quest">Rare</td></tr>
+      <tr class="savanna-2"><td data-label="Location">Key West</td><td data-label="Bait">Snook</td><td data-label="Quest">Rare</td></tr>
+      <tr class="savanna-1"><td data-label="Location">Key West</td><td data-label="Bait">Medium Cut Squid</td><td data-label="Quest">Epic</td></tr>
+      <tr class="savanna-2"><td data-label="Location">Key West</td><td data-label="Bait">Mullet Live Bait</td><td data-label="Quest">Epic</td></tr>
+      <tr class="subtropical-1"><td data-label="Location">Toledo</td><td data-label="Bait">Dough Balls</td><td data-label="Quest">Epic</td></tr>
+      <tr class="subtropical-2"><td data-label="Location">Toledo</td><td data-label="Bait">Old Bread</td><td data-label="Quest">Epic</td></tr>
+      <tr class="continental-1"><td data-label="Location">Great Lakes</td><td data-label="Bait">Salmon Bait</td><td data-label="Quest">Epic</td></tr>
+      <tr class="continental-2"><td data-label="Location">Great Lakes</td><td data-label="Bait">Trout Dough</td><td data-label="Quest">Epic</td></tr>
+      <tr class="continental-1"><td data-label="Location">Danube</td><td data-label="Bait"></td><td data-label="Quest"></td></tr>
+      <tr class="rainforest"><td data-label="Location">Amazon</td><td data-label="Bait"></td><td data-label="Quest"></td></tr>
+      <tr class="mediterranean"><td data-label="Location">Mediterranean Sea</td><td data-label="Bait">Small Chunk of Bonito Live Bait</td><td data-label="Quest">Epic</td></tr>
+      <tr class="oceanic"><td data-label="Location">Cape Cod</td><td data-label="Bait"></td><td data-label="Quest"></td></tr>
+      <tr class="savanna-1"><td data-label="Location">Hawaii</td><td data-label="Bait">Clams</td><td data-label="Quest">Rare</td></tr>
+      <tr class="savanna-2"><td data-label="Location">Hawaii</td><td data-label="Bait">Scallops</td><td data-label="Quest">Rare</td></tr>
+      <tr class="monsoon-1"><td data-label="Location">Cairns</td><td data-label="Bait">Cut Octopus</td><td data-label="Quest">Epic</td></tr>
+      <tr class="monsoon-2"><td data-label="Location">Cairns</td><td data-label="Bait">Sand Flea</td><td data-label="Quest">Rare</td></tr>
+      <tr class="monsoon-1"><td data-label="Location">Cairns</td><td data-label="Bait">Sand Worm</td><td data-label="Quest">Legendary</td></tr>
+    </tbody>
+  </table>
 </body>
 </html>
