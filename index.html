@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Fishing Locations & Baits</title>
   <style>
+    /* Page basics */
     body {
       font-family: Arial, sans-serif;
       background: #826268;
@@ -14,99 +16,321 @@
       flex-direction: column;
       align-items: center;
     }
+
     h1 {
       margin-bottom: 20px;
       font-size: 2rem;
       color: #1e3a8a;
+      text-align: center;
     }
+
+    /* Table wrapper */
+    .table-container {
+      width: 100%;
+      max-width: 1000px;
+      overflow-x: auto; /* allow horizontal scroll on narrow screens */
+    }
+
+    /* Table */
     table {
       border-collapse: collapse;
-      width: 95%;
-      max-width: 1000px;
+      width: 100%;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       background: white;
       border-radius: 8px;
       overflow: hidden;
+      min-width: 600px; /* prevents columns from collapsing on small screens */
     }
+
     thead {
       background: #2563eb;
       color: white;
     }
+
     th, td {
       padding: 12px 16px;
       text-align: left;
+      white-space: nowrap; /* keep table tidy; scroll instead of wrapping */
     }
+
     th {
       font-weight: bold;
       font-size: 1rem;
     }
+
     td {
       font-size: 0.95rem;
     }
 
-    /* Updated climate colors */
+    /* Row color classes (climate theme) */
     .subtropical-1{ background: #2bad78; }
     .continental-1{ background: #a5aeb2; }
     .monsoon-1 { background: #3c105d; color: white; }
-    .mediterranean { background: #2d8288; color: white }
+    .mediterranean { background: #2d8288; color: white; }
     .rainforest { background: #0b2112; color: white; }
-    .semiarid { background: #b08248; color: white; } /* Semi-arid brown */
+    .semiarid { background: #b08248; color: white; }
     .oceanic { background: #143550; color: white; }
-    .subarctic { background: #5280a8; color: white }
-    .savanna-1 { background: #bbab31; } /* Savanna yellow */
+    .subarctic { background: #5280a8; color: white; }
+    .savanna-1 { background: #bbab31; }
     .subtropical-2 { background: #469173; }
-    .continental-2 {background: #9a9fa2; }
-    .savanna-2 {background: #958829; }
-    .monsoon-2 { background: #48165f; color: white }
+    .continental-2 { background: #9a9fa2; }
+    .savanna-2 { background: #958829; }
+    .monsoon-2 { background: #48165f; color: white; }
+
+    /* Corner image box (desktop) */
+    .corner-box {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      text-align: center;
+      z-index: 1000;
+    }
+    .corner-box img {
+      width: 150px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .corner-box .caption {
+      margin-top: 5px;
+      font-weight: bold;
+      font-size: 1rem;
+      color: #333;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      body { padding: 20px; }
+      h1 { font-size: 1.5rem; }
+      th, td {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+      }
+      /* place the image into normal flow and center it on mobile */
+      .corner-box {
+        position: static;
+        margin: 0 0 20px 0;
+      }
+      .corner-box img { width: 100px; }
+      .corner-box { display: flex; flex-direction: column; align-items: center; }
+    }
   </style>
 </head>
 <body>
-  <h1>Fishing Locations & Baits</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Location</th>
-        <th>Bait</th>
-        <th>Quest</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="subtropical-1"><td>Cypress</td><td>Carp</td><td>Rare</td></tr>
-      <tr class="subarctic"><td>Kenai</td><td></td><td></td></tr>
-      <tr class="subtropical-1"><td>Biwa</td><td>Crankbait</td><td>Epic</td></tr>
-      <tr class="subtropical-2"><td>Biwa</td><td>Trout Bait</td><td>Epic</td></tr>
-      <tr class="semiarid"><td>Murray River</td><td>Catfish</td><td>Rare</td></tr>
-      <tr class="savanna-1"><td>Everglades</td><td>Worms</td><td>Legendary</td></tr>
-      <tr class="savanna-2"><td>Everglades</td><td>Zebra Mussels</td><td>Legendary</td></tr>
-      <tr class="savanna-1"><td>Key West</td><td>Clams</td><td>Rare</td></tr>
-      <tr class="savanna-2"><td>Key West</td><td>Snook</td><td>Rare</td></tr>
-      <tr class="savanna-1"><td>Key West</td><td>Medium Cut Squid</td><td>Epic</td></tr>
-      <tr class="savanna-2"><td>Key West</td><td>Mullet Live Bait</td><td>Epic</td></tr>
-      <tr class="subtropical-1"><td>Toledo</td><td>Dough Balls</td><td>Epic</td></tr>
-      <tr class="subtropical-2"><td>Toledo</td><td>Old Bread</td><td>Epic</td></tr>
-      <tr class="continental-1"><td>Great Lakes</td><td>Salmon Bait</td><td>Epic</td></tr>
-      <tr class="continental-2"><td>Great Lakes</td><td>Trout Dough</td><td>Epic</td></tr>
-      <tr class="continental-1"><td>Danube</td><td></td><td></td></tr>
-      <tr class="rainforest"><td>Amazon</td><td></td><td></td></tr>
-      <tr class="mediterranean"><td>Mediterranean Sea</td><td>Small Chunk of Bonito Live Bait</td><td>Epic</td></tr>
-      <tr class="oceanic"><td>Cape Cod</td><td></td><td></td></tr>
-      <tr class="savanna-1"><td>Hawaii</td><td>Clams</td><td>Rare</td></tr>
-      <tr class="savanna-2"><td>Hawaii</td><td>Scallops</td><td>Rare</td></tr>
-      <tr class="monsoon-1"><td>Cairns</td><td>Cut Octopus</td><td>Epic</td></tr>
-      <tr class="monsoon-2"><td>Cairns</td><td>Sand Flea</td><td>Rare</td></tr>
-      <tr class="monsoon-1"><td>Cairns</td><td>Sand Worm</td><td>Legendary</td></tr>
-
-<!-- Top-left image with centered text below -->
-<div style="position: absolute; top: 20px; left: 20px; text-align: center; z-index: 1000;">
-  <img src="https://i.imgur.com/oChVxGZ.jpeg" 
-       alt="My Image" 
-       style="width: 150px; height: auto; display: block; margin: 0 auto; border-radius: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
-  <div style="margin-top: 5px; font-weight: bold; font-size: 1rem; color: #333;">
-    mrow :3
+  <!-- image + caption -->
+  <div class="corner-box">
+    <img src="https://i.imgur.com/oChVxGZ.jpeg" alt="My Image">
+    <div class="caption">mrow :3</div>
   </div>
-</div>
 
-    </tbody>
-  </table>
+  <h1>Fishing Locations & Baits</h1>
+
+  <div class="table-container" aria-live="polite">
+    <table>
+      <thead>
+        <tr>
+          <th>Location</th>
+          <th>Bait</th>
+          <th>Quest</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="subtropical-1"><td>Cypress</td><td>Carp</td><td>Rare</td></tr>
+        <tr class="subarctic"><td>Kenai</td><td></td><td></td></tr>
+        <tr class="subtropical-1"><td>Biwa</td><td>Crankbait</td><td>Epic</td></tr>
+        <tr class="subtropical-2"><td>Biwa</td><td>Trout Bait</td><td>Epic</td></tr>
+        <tr class="semiarid"><td>Murray River</td><td>Catfish</td><td>Rare</td></tr>
+        <tr class="savanna-1"><td>Everglades</td><td>Worms</td><td>Legendary</td></tr>
+        <tr class="savanna-2"><td>Everglades</td><td>Zebra Mussels</td><td>Legendary</td></tr>
+        <tr class="savanna-1"><td>Key West</td><td>Clams</td><td>Rare</td></tr>
+        <tr class="savanna-2"><td>Key West</td><td>Snook</td><td>Rare</td></tr>
+        <tr class="savanna-1"><td>Key West</td><td>Medium Cut Squid</td><td>Epic</td></tr>
+        <tr class="savanna-2"><td>Key West</td><td>Mullet Live Bait</td><td>Epic</td></tr>
+        <tr class="subtropical-1"><td>Toledo</td><td>Dough Balls</td><td>Epic</td></tr>
+        <tr class="subtropical-2"><td>Toledo</td><td>Old Bread</td><td>Epic</td></tr>
+        <tr class="continental-1"><td>Great Lakes</td><td>Salmon Bait</td><td>Epic</td></tr>
+        <tr class="continental-2"><td>Great Lakes</td><td>Trout Dough</td><td>Epic</td></tr>
+        <tr class="continental-1"><td>Danube</td><td></td><td></td></tr>
+        <tr class="rainforest"><td>Amazon</td><td></td><td></td></tr>
+        <tr class="mediterranean"><td>Mediterranean Sea</td><td>Small Chunk of Bonito Live Bait</td><td>Epic</td></tr>
+        <tr class="oceanic"><td>Cape Cod</td><td></td><td></td></tr>
+        <tr class="savanna-1"><td>Hawaii</td><td>Clams</td><td>Rare</td></tr>
+        <tr class="savanna-2"><td>Hawaii</td><td>Scallops</td><td>Rare</td></tr>
+        <tr class="monsoon-1"><td>Cairns</td><td>Cut Octopus</td><td>Epic</td></tr>
+        <tr class="monsoon-2"><td>Cairns</td><td>Sand Flea</td><td>Rare</td></tr>
+        <tr class="monsoon-1"><td>Cairns</td><td>Sand Worm</td><td>Legendary</td></tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fishing Locations & Baits</title>
+  <style>
+    /* Page basics */
+    body {
+      font-family: Arial, sans-serif;
+      background: #826268;
+      color: #333;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #1e3a8a;
+      text-align: center;
+    }
+
+    /* Table wrapper */
+    .table-container {
+      width: 100%;
+      max-width: 1000px;
+      overflow-x: auto; /* allow horizontal scroll on narrow screens */
+    }
+
+    /* Table */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      min-width: 600px; /* prevents columns from collapsing on small screens */
+    }
+
+    thead {
+      background: #2563eb;
+      color: white;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      white-space: nowrap; /* keep table tidy; scroll instead of wrapping */
+    }
+
+    th {
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    td {
+      font-size: 0.95rem;
+    }
+
+    /* Row color classes (climate theme) */
+    .subtropical-1{ background: #2bad78; }
+    .continental-1{ background: #a5aeb2; }
+    .monsoon-1 { background: #3c105d; color: white; }
+    .mediterranean { background: #2d8288; color: white; }
+    .rainforest { background: #0b2112; color: white; }
+    .semiarid { background: #b08248; color: white; }
+    .oceanic { background: #143550; color: white; }
+    .subarctic { background: #5280a8; color: white; }
+    .savanna-1 { background: #bbab31; }
+    .subtropical-2 { background: #469173; }
+    .continental-2 { background: #9a9fa2; }
+    .savanna-2 { background: #958829; }
+    .monsoon-2 { background: #48165f; color: white; }
+
+    /* Corner image box (desktop) */
+    .corner-box {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      text-align: center;
+      z-index: 1000;
+    }
+    .corner-box img {
+      width: 150px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .corner-box .caption {
+      margin-top: 5px;
+      font-weight: bold;
+      font-size: 1rem;
+      color: #333;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      body { padding: 20px; }
+      h1 { font-size: 1.5rem; }
+      th, td {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+      }
+      /* place the image into normal flow and center it on mobile */
+      .corner-box {
+        position: static;
+        margin: 0 0 20px 0;
+      }
+      .corner-box img { width: 100px; }
+      .corner-box { display: flex; flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- image + caption -->
+  <div class="corner-box">
+    <img src="https://i.imgur.com/oChVxGZ.jpeg" alt="My Image">
+    <div class="caption">mrow :3</div>
+  </div>
+
+  <h1>Fishing Locations & Baits</h1>
+
+  <div class="table-container" aria-live="polite">
+    <table>
+      <thead>
+        <tr>
+          <th>Location</th>
+          <th>Bait</th>
+          <th>Quest</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="subtropical-1"><td>Cypress</td><td>Carp</td><td>Rare</td></tr>
+        <tr class="subarctic"><td>Kenai</td><td></td><td></td></tr>
+        <tr class="subtropical-1"><td>Biwa</td><td>Crankbait</td><td>Epic</td></tr>
+        <tr class="subtropical-2"><td>Biwa</td><td>Trout Bait</td><td>Epic</td></tr>
+        <tr class="semiarid"><td>Murray River</td><td>Catfish</td><td>Rare</td></tr>
+        <tr class="savanna-1"><td>Everglades</td><td>Worms</td><td>Legendary</td></tr>
+        <tr class="savanna-2"><td>Everglades</td><td>Zebra Mussels</td><td>Legendary</td></tr>
+        <tr class="savanna-1"><td>Key West</td><td>Clams</td><td>Rare</td></tr>
+        <tr class="savanna-2"><td>Key West</td><td>Snook</td><td>Rare</td></tr>
+        <tr class="savanna-1"><td>Key West</td><td>Medium Cut Squid</td><td>Epic</td></tr>
+        <tr class="savanna-2"><td>Key West</td><td>Mullet Live Bait</td><td>Epic</td></tr>
+        <tr class="subtropical-1"><td>Toledo</td><td>Dough Balls</td><td>Epic</td></tr>
+        <tr class="subtropical-2"><td>Toledo</td><td>Old Bread</td><td>Epic</td></tr>
+        <tr class="continental-1"><td>Great Lakes</td><td>Salmon Bait</td><td>Epic</td></tr>
+        <tr class="continental-2"><td>Great Lakes</td><td>Trout Dough</td><td>Epic</td></tr>
+        <tr class="continental-1"><td>Danube</td><td></td><td></td></tr>
+        <tr class="rainforest"><td>Amazon</td><td></td><td></td></tr>
+        <tr class="mediterranean"><td>Mediterranean Sea</td><td>Small Chunk of Bonito Live Bait</td><td>Epic</td></tr>
+        <tr class="oceanic"><td>Cape Cod</td><td></td><td></td></tr>
+        <tr class="savanna-1"><td>Hawaii</td><td>Clams</td><td>Rare</td></tr>
+        <tr class="savanna-2"><td>Hawaii</td><td>Scallops</td><td>Rare</td></tr>
+        <tr class="monsoon-1"><td>Cairns</td><td>Cut Octopus</td><td>Epic</td></tr>
+        <tr class="monsoon-2"><td>Cairns</td><td>Sand Flea</td><td>Rare</td></tr>
+        <tr class="monsoon-1"><td>Cairns</td><td>Sand Worm</td><td>Legendary</td></tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
