@@ -91,11 +91,9 @@
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
       }
-      .top-left-image img {
-        width: 100px;
-      }
-      .top-left-image div {
-        font-size: 0.9rem;
+      /* Hide the top-left image on mobile */
+      .top-left-image {
+        display: none;
       }
     }
 
@@ -103,12 +101,6 @@
       h1 {
         font-size: 1.5rem;
         text-align: center;
-      }
-      .top-left-image img {
-        width: 80px;
-      }
-      .top-left-image div {
-        font-size: 0.8rem;
       }
     }
   </style>
