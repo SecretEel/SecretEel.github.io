@@ -10,7 +10,7 @@
       background: #826268;
       color: #333;
       margin: 0;
-      padding: 40px;
+      padding: 40px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -20,15 +20,12 @@
       margin-bottom: 20px;
       font-size: 2rem;
       color: #1e3a8a;
+      text-align: center;
     }
     table {
       border-collapse: collapse;
       width: 95%;
       max-width: 1000px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      background: white;
-      border-radius: 8px;
-      overflow: hidden;
     }
     thead {
       background: #2563eb;
@@ -101,38 +98,36 @@
       }
 
       tr {
-        margin-bottom: 15px;
-        border-radius: 8px;
-        background: white;
-        padding: 10px;
-        box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+        margin-bottom: 0; /* no white space between rows */
+        border-radius: 0;
+        padding: 0;
+        background: none; /* remove white background */
       }
 
       td {
-        padding: 6px 0;
+        padding: 6px 10px;
         text-align: left;
-        border: none;
         position: relative;
-        padding-left: 120px;
+        display: block;
+        width: 100%;
+        border: none;
+        background-color: inherit; /* keep row color only */
       }
 
       td::before {
         content: attr(data-label);
-        position: absolute;
-        left: 10px;
         font-weight: bold;
+        display: inline-block;
+        width: 100px;
       }
     }
 
     @media (max-width: 480px) {
       h1 {
         font-size: 1.5rem;
-        text-align: center;
-      }
-      td {
-        padding-left: 100px;
       }
       td::before {
+        width: 90px;
         font-size: 0.9rem;
       }
     }
@@ -176,4 +171,11 @@
       <tr class="mediterranean"><td data-label="Location">Mediterranean Sea</td><td data-label="Bait">Small Chunk of Bonito Live Bait</td><td data-label="Quest">Epic</td></tr>
       <tr class="oceanic"><td data-label="Location">Cape Cod</td><td data-label="Bait"></td><td data-label="Quest"></td></tr>
       <tr class="savanna-1"><td data-label="Location">Hawaii</td><td data-label="Bait">Clams</td><td data-label="Quest">Rare</td></tr>
-      <tr class="savanna-2"><td data-label="Location">Hawaii</td><td
+      <tr class="savanna-2"><td data-label="Location">Hawaii</td><td data-label="Bait">Scallops</td><td data-label="Quest">Rare</td></tr>
+      <tr class="monsoon-1"><td data-label="Location">Cairns</td><td data-label="Bait">Cut Octopus</td><td data-label="Quest">Epic</td></tr>
+      <tr class="monsoon-2"><td data-label="Location">Cairns</td><td data-label="Bait">Sand Flea</td><td data-label="Quest">Rare</td></tr>
+      <tr class="monsoon-1"><td data-label="Location">Cairns</td><td data-label="Bait">Sand Worm</td><td data-label="Quest">Legendary</td></tr>
+    </tbody>
+  </table>
+</body>
+</html>
