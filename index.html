@@ -74,16 +74,26 @@
       border-radius: 15px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
-    .top-left-image div {
+
+    /* Animated rainbow text */
+    .rainbow-text {
       margin-top: 5px;
       font-weight: bold;
-      font-size: 1rem;
-      color: #333;
+      font-size: 1.2rem;
+      background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbowShift 8s linear infinite;
+    }
+
+    @keyframes rainbowShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
     }
 
     /* MOBILE ONLY */
     @media (max-width: 768px) {
-      /* Hide image on mobile */
       .top-left-image {
         display: none;
       }
@@ -93,11 +103,11 @@
       }
 
       table {
-        width: 90%;       /* use most of screen but leave small margin */
-        max-width: 400px; /* limit for wider phones */
+        width: 90%;
+        max-width: 400px;
         border-radius: 12px;
         overflow: hidden;
-        margin: 0 auto;   /* center table */
+        margin: 0 auto;
       }
 
       thead {
@@ -105,7 +115,7 @@
       }
 
       tr {
-        margin: 0; 
+        margin: 0;
         border-radius: 0;
         padding: 0;
         box-shadow: none;
@@ -118,7 +128,7 @@
         display: block;
         width: 100%;
         border: none;
-        background-color: inherit; 
+        background-color: inherit;
       }
 
       td::before {
@@ -151,7 +161,7 @@
   <!-- Top-left image -->
   <div class="top-left-image">
     <img src="https://i.imgur.com/9Y6VX2b.png" alt="My Image">
-    <div>Welcome Kassumi!</div>
+    <div class="rainbow-text">Welcome Kassumi!</div>
   </div>
 
   <table>
